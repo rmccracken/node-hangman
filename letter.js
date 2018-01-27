@@ -18,4 +18,3 @@ class Letters {
 	};
 };
 module.exports = Letters;
-console.log("there are no errors")
