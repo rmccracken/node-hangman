@@ -2,6 +2,7 @@ let letters = require('./letter.js');
 
 
  Word = (value) => {
+	
 	let _this = this; 
 	this.value = value;
 	this.letters = [];
@@ -15,7 +16,7 @@ let letters = require('./letter.js');
 	};
 	this.letterFound = (letterGuessed) => {
 		let eachspace = 0;
-		this.letters.forEach(function(rightLetter){
+		this.letters.forEach((rightLetters) => {
 			if (right.letter === letterGuessed){
 				rightLetter.visible === true;
 				eachspace++;
@@ -24,6 +25,20 @@ let letters = require('./letter.js');
 		return eachspace;
 	};
 	this.showLetter = () => {
-		
-	}
+		let show = "";
+		letters.forEach((rightLetters) => {
+			let display = rightLetter.makeVisible();
+			show += display
+		});
+		return show;
+	};
+	this.wordFound = () => {
+		if(this.letter.every((rightLetters)=>{
+			return rightLetter
+		})){
+			this.solved = true;
+			return true;
+		}
+	};
 };
+module.exports = Word;
