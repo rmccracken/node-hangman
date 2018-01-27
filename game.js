@@ -24,19 +24,34 @@ function startApp() {
             console.log("What the shiplap is wrong with you?\n If you want come back again sometime")
         }
     })
-let startGame = (this) => {
-    let _this = this;
     let guesses = 10;
-    let lettersGuessed = 0;
+    let lettersGuessed = [];
     let wordBank = wordbank.newWord.wordBank;
+    let currentWord = null;
 
-    if (this.lettersGuessed.length > 0){
+    let startGame = () => {
+
+    if (lettersGuessed.length > 0){
         this.lettersGuessed = [];
         newGame();
     }
-// let newGame = () => {
-//     if (this.guesses === 10)
-// }
+let newGame = () => {
+    if (this.guesses === 10){
+        console.log("Wlcome to the Silo's")
+        let randomNum = Math.floor(Math.random() * wordBank.length);
+        currentWord = new word(wordBank[randomNum]);
+        currentWord.getLetters();
+        // console log blanks
+        console.log(currentWord.showLetter());
+        andAgain();
+    } else {
+        let guesses = 10;
+        newGame();
+    }
+}
+let andAgain = () => {
+    let _this = this;
+
     inquirer.prompt([{
         name: "guess",
         type: "input",
@@ -44,7 +59,15 @@ let startGame = (this) => {
     }]).then((character) =>{
         let currentChoice = (guess.character).toLowerCase;
         let alreadyGuessed = false;
-        for(i = 0; i < lettersGuessed.length; i++);
+        for(i = 0; i < lettersGuessed.length; i++);{
+            if (currentChoice === lettersGuessed.length[i]){
+                alreadyGuessed = true;
+            }
+        }
+        if(alreadyGuessed === false){
+            lettersGuessed.push(currentChoice);
+        }
     })
+}
 }
 }
